@@ -1,27 +1,17 @@
-
 window.LABELS = {
   situation: {
-    CORDA_SINGOLA: "Persona bloccata su corda singola",
-    CORDA_DOPPIA: "Persona bloccata su corda doppia",
-    MANCORRENTE: "Persona bloccata su mancorrente"
+    CORDA_SINGOLA_SVINCOLABILE: "Singola svincolabile",
+    CORDA_SINGOLA_NON_SVINCOLABILE: "Singola non svincolabile",
+    CORDA_DOPPIA: "Doppia",
+    MANCORRENTE: "Mancorrente"
   },
-  calata: {
-    ASCIUTTA: "Calata asciutta",
-    CASCATA: "Calata con cascata"
-  },
-  base: {
-    ASCIUTTA: "Base asciutta",
-    LAGHETTO: "Base con laghetto",
-    POZZA_TURBOLENTA: "Base con pozza turbolenta"
-  },
-  boolean: {
-    true: "Sì",
-    false: "No"
-  },
-  vittima: {
-    COSCIENTE: "Vittima cosciente",
-    INCOSCIENTE: "Vittima incosciente",
-    NON_COLLABORATIVA: "Vittima cosciente non collaborativa"
+  calata: { ASCIUTTA: "Asciutta", CASCATA: "Cascata" },
+  base: { ASCIUTTA: "Base asciutta", LAGHETTO: "Laghetto", POZZA_TURBOLENTA: "Pozza turbolenta" },
+  vittima: { COSCIENTE: "Cosciente", INCOSCIENTE: "Incosciente", NON_COLLABORATIVA: "Non collaborativa" },
+  cordaMagazzino: {
+    SUFFICIENTE: "Sufficiente",
+    NON_SUFFICIENTE: "Non sufficiente",
+    NON_UTILIZZABILE: "Non utilizzabile"
   },
   answers: {
     DIRETTO_SINGOLA: "Soccorso diretto su corda singola",
@@ -29,11 +19,8 @@ window.LABELS = {
     INDIRETTO_SINGOLA: "Soccorso indiretto su corda singola",
     INDIRETTO_DOPPIA: "Soccorso indiretto su corda doppia",
     PASSAGGIO_NODO: "Passaggio del nodo in sosta",
-    MINI_BILANCINO_MC: "Mini Bilancino su MC"
-  },
-  difficulty: {
-    FACILE: "Facile",
-    MEDIO: "Medio",
-    DIFFICILE: "Difficile"
+    MINI_BILANCINO_MC: "Mini Bilancino su MC",
+    SVINCOLO_SOSTA: "Svincolo sosta",
+    NESSUNA_MANOVRA: "Non posso eseguire nessuna manovra"
   }
 };

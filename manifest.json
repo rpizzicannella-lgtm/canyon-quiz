@@ -3,7 +3,7 @@
   "short_name": "CanyonQuiz",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#0b1220",
+  "background_color": "#e2e8f0",
   "theme_color": "#0f172a",
   "icons": [
     {

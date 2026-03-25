@@ -4,214 +4,80 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Canyoning Rescue Quiz</title>
-  <meta name="theme-color" content="#0f172a" />
   <link rel="manifest" href="./manifest.json" />
-  <link rel="icon" href="./icons/icon-192.png" />
   <link rel="stylesheet" href="./styles.css" />
+  <meta name="theme-color" content="#0f172a" />
 </head>
 <body>
-  <header class="app-header">
-    <div>
+  <div class="app">
+    <header class="topbar">
       <h1>Canyoning Rescue Quiz</h1>
-      <p class="subtitle">Quiz PWA con archivio scenari completo e admin locale</p>
-    </div>
-    <div class="header-actions">
-      <button id="installBtn" class="secondary hidden">Installa</button>
-      <button id="refreshBtn" class="secondary">Aggiorna</button>
-    </div>
-  </header>
+      <div class="status-row">
+        <span id="modeBadge" class="badge">Quiz</span>
+        <span id="questionBadge" class="badge">Q0</span>
+        <span id="timerBadge" class="badge accent">--</span>
+      </div>
+    </header>
 
-  <main class="container">
-    <section class="panel controls">
-      <div class="grid grid-4">
-        <label>
-          Modalità
-          <select id="modeSelect">
-            <option value="TRAINING">Allenamento</option>
-            <option value="EXAM">Esame</option>
-          </select>
-        </label>
-        <label>
-          Difficoltà
-          <select id="difficultySelect">
-            <option value="">Tutte</option>
-            <option value="FACILE">Facile</option>
-            <option value="MEDIO">Medio</option>
-            <option value="DIFFICILE">Difficile</option>
-          </select>
-        </label>
-        <label>
-          Timer domanda
-          <select id="timerSelect">
-            <option value="20">20 s</option>
-            <option value="15" selected>15 s</option>
-            <option value="10">10 s</option>
-            <option value="5">5 s</option>
-          </select>
-        </label>
-        <label>
-          Domande esame
-          <select id="examCountSelect">
-            <option value="5">5</option>
-            <option value="10" selected>10</option>
-            <option value="15">15</option>
-            <option value="20">20</option>
-          </select>
-        </label>
+    <section class="controls card">
+      <div class="grid2">
+        <button id="startQuizBtn" type="button" class="primary">Avvia quiz</button>
+        <button id="nextQuestionBtn" type="button">Prossima domanda</button>
       </div>
-      <div class="actions-row">
-        <button id="startBtn">Avvia quiz</button>
-        <button id="newScenarioBtn" class="secondary">Nuovo scenario</button>
-        <button id="openAdminBtn" class="secondary">Admin scenari</button>
+      <div class="grid2">
+        <button id="newScenarioBtn" type="button">Nuovo scenario</button>
+        <a class="button-link" href="./admin.html">Vai ad Admin</a>
       </div>
-      <div class="stats">
-        <span>Punteggio: <strong id="scoreValue">0</strong></span>
-        <span>Domanda: <strong id="questionValue">0</strong></span>
-        <span>Rimanenti: <strong id="remainingValue">0</strong></span>
-        <span>Storico errori: <strong id="errorsValue">0</strong></span>
+      <div class="grid2">
+        <select id="modeSelect">
+          <option value="QUIZ">Modalità Quiz</option>
+          <option value="INSTRUCTOR">Modalità Istruttore</option>
+        </select>
+        <div></div>
       </div>
     </section>
 
-    <section class="panel quiz-panel">
-      <div class="quiz-top">
-        <div class="timer-box">
-          <span>Tempo</span>
-          <strong id="timerValue">--</strong>
-        </div>
-        <div class="message-box" id="messageBox">Premi “Avvia quiz” per iniziare.</div>
-      </div>
-
-      <div class="scenario-card">
-        <h2>Scenario</h2>
-        <div id="scenarioMeta" class="scenario-meta"></div>
-        <div id="scenarioDetails" class="scenario-details"></div>
-      </div>
-
-      <div class="answers-card">
-        <h2>Manovre</h2>
-        <div id="answersContainer" class="answers-grid"></div>
-      </div>
-
-      <div id="resultBox" class="result-box hidden"></div>
+    <section class="card compact-card">
+      <div class="section-title">Scenario</div>
+      <pre id="scenarioCompact" class="scenario-compact">Premi "Avvia quiz" per iniziare.</pre>
     </section>
 
-    <section id="adminSection" class="panel admin-panel hidden">
-      <div class="admin-header">
-        <h2>Admin scenari</h2>
-        <div class="actions-row">
-          <button id="addScenarioBtn">Nuovo scenario</button>
-          <button id="saveScenarioBtn">Salva scenario</button>
-          <button id="deleteScenarioBtn" class="danger">Elimina scenario</button>
-          <button id="resetOfficialBtn" class="secondary">Ripristina ufficiali</button>
+    <section id="quizSection" class="card">
+      <div class="section-title">Risposte</div>
+      <div id="answers" class="answers"></div>
+    </section>
+
+    <section id="instructorSection" class="card hidden">
+      <div class="section-title">Modalità istruttore</div>
+      <div id="bestAnswerBox" class="panel"></div>
+      <div class="two-col">
+        <div>
+          <h3>Manovre consentite</h3>
+          <div id="allowedBox" class="listbox"></div>
         </div>
-      </div>
-
-      <div class="grid grid-3 admin-tools">
-        <label>
-          Cerca per ID / testo
-          <input id="scenarioSearch" type="text" placeholder="Es. 12 o corda singola" />
-        </label>
-        <label>
-          Filtro difficoltà
-          <select id="adminDifficultyFilter">
-            <option value="">Tutte</option>
-            <option value="FACILE">Facile</option>
-            <option value="MEDIO">Medio</option>
-            <option value="DIFFICILE">Difficile</option>
-          </select>
-        </label>
-        <label>
-          Filtro risposta
-          <select id="adminAnswerFilter"></select>
-        </label>
-      </div>
-
-      <div class="admin-layout">
-        <div class="scenario-list-wrap">
-          <div class="list-header">
-            <strong>Elenco scenari</strong>
-            <span id="adminCount"></span>
-          </div>
-          <div id="scenarioList" class="scenario-list"></div>
-        </div>
-
-        <div class="editor-wrap">
-          <div class="editor-grid">
-            <label>ID
-              <input id="editId" type="number" readonly />
-            </label>
-            <label>Situazione
-              <select id="editSituation"></select>
-            </label>
-            <label>Calata
-              <select id="editCalata"></select>
-            </label>
-            <label>Base
-              <select id="editBase"></select>
-            </label>
-            <label>Calata con sfregamenti
-              <select id="editSfregamenti">
-                <option value="false">No</option>
-                <option value="true">Sì</option>
-              </select>
-            </label>
-            <label>Corda annessa
-              <select id="editCordaAnnessa">
-                <option value="false">No</option>
-                <option value="true">Sì</option>
-              </select>
-            </label>
-            <label>Vittima
-              <select id="editVittima"></select>
-            </label>
-            <label>Compagni alla base
-              <select id="editCompagniBase">
-                <option value="false">No</option>
-                <option value="true">Sì</option>
-              </select>
-            </label>
-            <label>Caduta massi
-              <select id="editCadutaMassi">
-                <option value="false">No</option>
-                <option value="true">Sì</option>
-              </select>
-            </label>
-            <label>Risposta corretta
-              <select id="editCorrectAnswer"></select>
-            </label>
-            <label>Difficoltà
-              <select id="editDifficulty">
-                <option value="FACILE">Facile</option>
-                <option value="MEDIO">Medio</option>
-                <option value="DIFFICILE">Difficile</option>
-              </select>
-            </label>
-          </div>
-
-          <label class="full-width">Motivazione
-            <textarea id="editReason" rows="4"></textarea>
-          </label>
-
-          <div class="actions-row">
-            <button id="recalcScenarioBtn" class="secondary">Ricalcola da regole</button>
-            <button id="duplicateScenarioBtn" class="secondary">Duplica scenario</button>
-            <button id="exportJsonBtn" class="secondary">Export JSON</button>
-            <label class="import-label secondary">
-              Import JSON
-              <input id="importJsonInput" type="file" accept="application/json" hidden />
-            </label>
-          </div>
-
-          <div id="editorInfo" class="editor-info"></div>
+        <div>
+          <h3>Manovre escluse</h3>
+          <div id="forbiddenBox" class="listbox"></div>
         </div>
       </div>
     </section>
-  </main>
+
+    <section class="card">
+      <div class="section-title">Esito</div>
+      <div id="result">Nessuna risposta ancora.</div>
+    </section>
+
+    <section class="card stats">
+      <div><strong>Punteggio:</strong> <span id="scoreValue">0</span></div>
+      <div><strong>Domande:</strong> <span id="questionValue">0</span></div>
+      <div><strong>Errori:</strong> <span id="errorsValue">0</span></div>
+    </section>
+  </div>
 
   <script src="./js/config.js"></script>
   <script src="./js/labels.js"></script>
   <script src="./js/rules.js"></script>
   <script src="./js/scenarios.js"></script>
-  <script src="./js/app.js"></script>
+  <script src="./js/quiz-app.js"></script>
 </body>
 </html>
