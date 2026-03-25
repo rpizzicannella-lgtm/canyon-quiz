@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "canyon-quiz-v1-0-0";
+const CACHE_NAME = "canyon-quiz-v2";
 const ASSETS = [
   "./",
   "./index.html",
