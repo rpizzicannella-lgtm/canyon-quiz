@@ -1,83 +1,69 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Canyoning Rescue Quiz</title>
-  <link rel="manifest" href="./manifest.json" />
-  <link rel="stylesheet" href="./styles.css" />
-  <meta name="theme-color" content="#0f172a" />
-</head>
-<body>
-  <div class="app">
-    <header class="topbar">
-      <h1>Canyoning Rescue Quiz</h1>
-      <div class="status-row">
-        <span id="modeBadge" class="badge">Quiz</span>
-        <span id="questionBadge" class="badge">Q0</span>
-        <span id="timerBadge" class="badge accent">--</span>
-      </div>
-    </header>
-
-    <section class="controls card">
-      <div class="grid2">
-        <button id="startQuizBtn" type="button" class="primary">Avvia quiz</button>
-        <button id="nextQuestionBtn" type="button">Prossima domanda</button>
-      </div>
-      <div class="grid2">
-        <button id="newScenarioBtn" type="button">Nuovo scenario</button>
-        <a class="button-link" href="./admin.html">Vai ad Admin</a>
-      </div>
-      <div class="grid2">
-        <select id="modeSelect">
-          <option value="QUIZ">Modalità Quiz</option>
-          <option value="INSTRUCTOR">Modalità Istruttore</option>
-        </select>
-        <div></div>
-      </div>
-    </section>
-
-    <section class="card compact-card">
-      <div class="section-title">Scenario</div>
-      <pre id="scenarioCompact" class="scenario-compact">Premi "Avvia quiz" per iniziare.</pre>
-    </section>
-
-    <section id="quizSection" class="card">
-      <div class="section-title">Risposte</div>
-      <div id="answers" class="answers"></div>
-    </section>
-
-    <section id="instructorSection" class="card hidden">
-      <div class="section-title">Modalità istruttore</div>
-      <div id="bestAnswerBox" class="panel"></div>
-      <div class="two-col">
-        <div>
-          <h3>Manovre consentite</h3>
-          <div id="allowedBox" class="listbox"></div>
-        </div>
-        <div>
-          <h3>Manovre escluse</h3>
-          <div id="forbiddenBox" class="listbox"></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="section-title">Esito</div>
-      <div id="result">Nessuna risposta ancora.</div>
-    </section>
-
-    <section class="card stats">
-      <div><strong>Punteggio:</strong> <span id="scoreValue">0</span></div>
-      <div><strong>Domande:</strong> <span id="questionValue">0</span></div>
-      <div><strong>Errori:</strong> <span id="errorsValue">0</span></div>
-    </section>
+<html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canyoning Rescue Quiz</title><link rel="manifest" href="./manifest.json"><link rel="stylesheet" href="./styles.css"><meta name="theme-color" content="#0f172a"></head>
+<body><div class="app">
+<header class="topbar">
+  <div class="topbar-row">
+    <h1>Canyoning Rescue Quiz</h1>
+    <div class="top-auth-box"><span id="userBadge" class="badge">Guest</span><button id="loginBtn" type="button" class="top-auth-btn">Login</button><button id="logoutBtn" type="button" class="top-auth-btn hidden">Logout</button><a id="adminLinkTop" class="subtle-link top-admin-link hidden" href="./admin.html">Admin</a></div>
   </div>
+  <div class="status-row">
+    <span id="versionBadge" class="badge">Versione v36.7.0</span>
+    <span id="modeBadge" class="badge">Quiz</span>
+    <span id="questionBadge" class="badge">Q0</span>
+    <span id="timerBadge" class="badge accent">--</span>
+  </div>
+</header>
 
-  <script src="./js/config.js"></script>
-  <script src="./js/labels.js"></script>
-  <script src="./js/rules.js"></script>
-  <script src="./js/scenarios.js"></script>
-  <script src="./js/quiz-app.js"></script>
-</body>
-</html>
+<section class="controls card">
+  <div class="grid2">
+    <button id="startQuizBtn" type="button" class="primary">Avvia quiz</button>
+    <button id="nextQuestionBtn" type="button">Prossima domanda</button>
+  </div>
+  <div class="grid2">
+    <button id="newScenarioBtn" type="button">Nuovo scenario</button>
+    <select id="modeSelect">
+      <option value="QUIZ">Modalità Quiz</option>
+      <option value="INSTRUCTOR">Modalità Istruttore</option>
+    </select>
+  </div>
+  <div class="grid2">
+    <label class="stacked">Profilo
+      <select id="audienceSelect">
+        <option value="ACCOMPAGNATORE" selected>Accompagnatore</option>
+        <option value="GUIDA">Guida</option>
+      </select>
+    </label>
+    <label class="stacked">Tempo risposta
+      <select id="timeSelect">
+        <option value="10">10 secondi</option>
+        <option value="12" selected>12 secondi</option>
+        <option value="15">15 secondi</option>
+        <option value="20">20 secondi</option>
+        <option value="30">30 secondi</option>
+      </select>
+    </label>
+  </div>
+  <div class="grid2">
+    <label class="stacked">Numero domande
+      <select id="questionCountSelect">
+        <option value="5">5 domande</option>
+        <option value="10" selected>10 domande</option>
+        <option value="15">15 domande</option>
+        <option value="20">20 domande</option>
+      </select>
+    </label>
+    <div></div>
+  </div>
+</section>
+
+<section class="card compact-card"><div class="section-title">Scenario</div><pre id="scenarioCompact" class="scenario-compact">Premi "Avvia quiz" per iniziare.</pre></section>
+<section id="quizSection" class="card"><div class="section-title">Risposte</div><div id="answers" class="answers"></div></section>
+<section id="instructorSection" class="card hidden"><div class="section-title">Modalità istruttore</div><div id="bestAnswerBox" class="panel"></div><div class="two-col"><div><h3>Manovre consentite</h3><div id="allowedBox" class="listbox"></div></div><div><h3>Manovre escluse</h3><div id="forbiddenBox" class="listbox"></div></div></div></section>
+<section id="debugSection" class="card hidden"><div class="section-title">Debug logico avanzato</div><div id="debugBox" class="listbox"></div></section>
+<section class="card"><div class="section-title">Esito</div><div id="result">Nessuna risposta ancora.</div></section>
+<section class="card stats"><div><strong>Punteggio:</strong> <span id="scoreValue">0</span></div><div><strong>Domande fatte:</strong> <span id="questionValue">0</span></div><div><strong>Errori:</strong> <span id="errorsValue">0</span></div></section>
+<section id="finalReportSection" class="card hidden"><div class="section-title">Resoconto finale</div><div id="finalSummary" class="panel"></div><div class="two-col"><div><h3>Risposte esatte</h3><div id="correctList" class="listbox"></div></div><div><h3>Risposte errate</h3><div id="wrongList" class="listbox"></div></div></div></section>
+</div>
+<script src="./js/config.js"></script><script src="./js/default-config.js"></script><script src="./js/storage.js"></script><script src="./js/auth.js"></script><script src="./js/supabase-adapter.js"></script><script src="./js/engine.js"></script><script src="./js/quiz-app.js"></script>
+</body></html>

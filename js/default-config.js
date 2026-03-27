@@ -1,0 +1,1112 @@
+window.DEFAULT_CONFIG = {
+  "version": "v36.7.0",
+  "adminPin": "2468",
+  "supabase": {
+    "enabled": false,
+    "url": "",
+    "anonKey": "",
+    "tables": {
+      "situations": "situations",
+      "variables": "variables",
+      "maneuvers": "maneuvers",
+      "rules": "rules",
+      "scenario_overrides": "scenario_overrides",
+      "detail_overrides": "detail_overrides"
+    }
+  },
+  "situations": [
+    {
+      "id": "CORDA_SINGOLA_SVINCOLABILE",
+      "label": "Corda Singola Svincolabile"
+    },
+    {
+      "id": "CORDA_SINGOLA_NON_SVINCOLABILE",
+      "label": "Corda Singola Non Svincolabile"
+    },
+    {
+      "id": "CORDA_DOPPIA",
+      "label": "Corda Doppia"
+    },
+    {
+      "id": "MANCORRENTE",
+      "label": "Mancorrente"
+    }
+  ],
+  "variables": [
+    {
+      "id": "calata",
+      "label": "Calata",
+      "values": [
+        {
+          "id": "ASCIUTTA",
+          "label": "Asciutta"
+        },
+        {
+          "id": "CASCATA",
+          "label": "Cascata"
+        }
+      ]
+    },
+    {
+      "id": "base",
+      "label": "Base",
+      "values": [
+        {
+          "id": "ASCIUTTA",
+          "label": "Base asciutta"
+        },
+        {
+          "id": "LAGHETTO",
+          "label": "Laghetto"
+        },
+        {
+          "id": "POZZA_TURBOLENTA",
+          "label": "Pozza turbolenta"
+        }
+      ]
+    },
+    {
+      "id": "sfregamenti",
+      "label": "Sfregamenti",
+      "values": [
+        {
+          "id": "NO",
+          "label": "No"
+        },
+        {
+          "id": "SI",
+          "label": "Sì"
+        }
+      ]
+    },
+    {
+      "id": "corda_annessa",
+      "label": "Corda annessa",
+      "values": [
+        {
+          "id": "NO",
+          "label": "No"
+        },
+        {
+          "id": "SI",
+          "label": "Sì"
+        }
+      ]
+    },
+    {
+      "id": "vittima",
+      "label": "Vittima",
+      "values": [
+        {
+          "id": "COSCIENTE",
+          "label": "Cosciente"
+        },
+        {
+          "id": "INCOSCIENTE",
+          "label": "Incosciente"
+        },
+        {
+          "id": "NON_COLLABORATIVA",
+          "label": "Non collaborativa"
+        }
+      ]
+    },
+    {
+      "id": "compagni_base",
+      "label": "Compagni alla base",
+      "values": [
+        {
+          "id": "NO",
+          "label": "No"
+        },
+        {
+          "id": "SI",
+          "label": "Sì"
+        }
+      ]
+    },
+    {
+      "id": "caduta_massi",
+      "label": "Caduta massi",
+      "values": [
+        {
+          "id": "NO",
+          "label": "No"
+        },
+        {
+          "id": "SI",
+          "label": "Sì"
+        }
+      ]
+    },
+    {
+      "id": "kitbull",
+      "label": "Kit-bull in sosta",
+      "values": [
+        {
+          "id": "SUFFICIENTE",
+          "label": "Sufficiente"
+        },
+        {
+          "id": "NON_SUFFICIENTE",
+          "label": "Non sufficiente"
+        },
+        {
+          "id": "NON_UTILIZZABILE",
+          "label": "Non utilizzabile"
+        }
+      ]
+    }
+  ],
+  "maneuvers": [
+    {
+      "id": "SVINCOLO_SOSTA",
+      "label": "Svincolo sosta",
+      "durationMinutes": 1,
+      "risk": "basso",
+      "basePriority": 1,
+      "targetAudience": "ENTRAMBI"
+    },
+    {
+      "id": "INDIRETTO_SINGOLA",
+      "label": "Soccorso indiretto su corda singola",
+      "durationMinutes": 2,
+      "risk": "basso",
+      "basePriority": 2,
+      "targetAudience": "ENTRAMBI"
+    },
+    {
+      "id": "INDIRETTO_DOPPIA",
+      "label": "Soccorso indiretto su corda doppia",
+      "durationMinutes": 2,
+      "risk": "basso",
+      "basePriority": 2,
+      "targetAudience": "ENTRAMBI"
+    },
+    {
+      "id": "DIRETTO_SINGOLA",
+      "label": "Soccorso diretto su corda singola",
+      "durationMinutes": 2,
+      "risk": "medio",
+      "basePriority": 3,
+      "targetAudience": "ENTRAMBI"
+    },
+    {
+      "id": "DIRETTO_DOPPIA",
+      "label": "Soccorso diretto su corda doppia",
+      "durationMinutes": 2,
+      "risk": "medio",
+      "basePriority": 3,
+      "targetAudience": "ENTRAMBI"
+    },
+    {
+      "id": "PASSAGGIO_NODO",
+      "label": "Passaggio del nodo in sosta",
+      "durationMinutes": 5,
+      "risk": "basso",
+      "basePriority": 4,
+      "targetAudience": "ENTRAMBI"
+    },
+    {
+      "id": "MINI_BILANCINO_MC",
+      "label": "Mini Bilancino su MC",
+      "durationMinutes": 2,
+      "risk": "basso",
+      "basePriority": 1,
+      "targetAudience": "ENTRAMBI"
+    },
+    {
+      "id": "NESSUNA_MANOVRA",
+      "label": "Non posso eseguire nessuna manovra",
+      "durationMinutes": 0,
+      "risk": "n/a",
+      "basePriority": 99,
+      "specialNone": true,
+      "targetAudience": "ENTRAMBI"
+    }
+  ],
+  "rules": [
+    {
+      "id": "PRIORITY_URGENZA_ALTA_SVINC",
+      "name": "Urgenza alta su svincolabile: preferisci svincolo",
+      "type": "priority",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_SINGOLA_SVINCOLABILE"
+        },
+        {
+          "field": "urgency_level",
+          "op": "eq",
+          "value": "ALTA"
+        },
+        {
+          "field": "kitbull",
+          "op": "eq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "priority": [
+        "SVINCOLO_SOSTA",
+        "INDIRETTO_SINGOLA",
+        "DIRETTO_SINGOLA",
+        "PASSAGGIO_NODO"
+      ],
+      "note": "In urgenza alta, su sosta svincolabile con kit-bull sufficiente, si preferisce lo svincolo sosta perché rapido e sicuro."
+    },
+    {
+      "id": "PRIORITY_URGENZA_ALTA",
+      "name": "Urgenza alta → manovra più veloce",
+      "type": "priority",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "urgency_level",
+          "op": "eq",
+          "value": "ALTA"
+        }
+      ],
+      "priority": [
+        "INDIRETTO_SINGOLA",
+        "INDIRETTO_DOPPIA",
+        "DIRETTO_SINGOLA",
+        "DIRETTO_DOPPIA",
+        "PASSAGGIO_NODO",
+        "SVINCOLO_SOSTA"
+      ],
+      "note": "Quando la vittima è in pericolo o l'urgenza è alta, si preferisce la manovra più veloce applicabile."
+    },
+    {
+      "id": "ALLOW_SVINCOLO_SOSTA",
+      "name": "Svincolo sosta con kit-bull sufficiente su singola svincolabile",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_SINGOLA_SVINCOLABILE"
+        },
+        {
+          "field": "kitbull",
+          "op": "eq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "SVINCOLO_SOSTA"
+      ],
+      "note": "Lo svincolo sosta è consentito su corda singola svincolabile quando il kit-bull in sosta è sufficiente."
+    },
+    {
+      "id": "PRIORITY_NODE_NON_SVINC_STRONG",
+      "name": "Nodo su non svincolabile in basso rischio",
+      "type": "priority",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_SINGOLA_NON_SVINCOLABILE"
+        },
+        {
+          "field": "risk_level",
+          "op": "eq",
+          "value": "BASSO"
+        },
+        {
+          "field": "urgency_level",
+          "op": "eq",
+          "value": "BASSA"
+        }
+      ],
+      "priority": [
+        "PASSAGGIO_NODO",
+        "INDIRETTO_SINGOLA",
+        "DIRETTO_SINGOLA"
+      ]
+    },
+    {
+      "id": "PRIORITY_NODE_SVINC_NO_KIT",
+      "name": "Nodo se kit non sufficiente",
+      "type": "priority",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_SINGOLA_SVINCOLABILE"
+        },
+        {
+          "field": "risk_level",
+          "op": "eq",
+          "value": "BASSO"
+        },
+        {
+          "field": "kitbull",
+          "op": "neq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "priority": [
+        "PASSAGGIO_NODO",
+        "INDIRETTO_SINGOLA"
+      ]
+    },
+    {
+      "id": "ALLOW_MC",
+      "name": "Mini bilancino su mancorrente",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "MANCORRENTE"
+        }
+      ],
+      "maneuvers": [
+        "MINI_BILANCINO_MC"
+      ],
+      "note": "Su mancorrente è la manovra di riferimento."
+    },
+    {
+      "id": "ALLOW_DIR_S",
+      "name": "Diretto singola",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        }
+      ],
+      "maneuvers": [
+        "DIRETTO_SINGOLA"
+      ],
+      "note": "Possibile su corda singola se non esclusa da altre regole."
+    },
+    {
+      "id": "ALLOW_DIR_D",
+      "name": "Diretto doppia",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_DOPPIA"
+        }
+      ],
+      "maneuvers": [
+        "DIRETTO_DOPPIA"
+      ],
+      "note": "Possibile su corda doppia se non esclusa da altre regole."
+    },
+    {
+      "id": "ALLOW_IND_S",
+      "name": "Indiretto singola",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        },
+        {
+          "field": "corda_annessa",
+          "op": "eq",
+          "value": "SI"
+        }
+      ],
+      "maneuvers": [
+        "INDIRETTO_SINGOLA"
+      ],
+      "note": "L'indiretto su singola richiede corda annessa."
+    },
+    {
+      "id": "ALLOW_SVINCOLO_LAG",
+      "name": "Svincolo sosta con vittima cosciente",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_SINGOLA_SVINCOLABILE"
+        },
+        {
+          "field": "kitbull",
+          "op": "eq",
+          "value": "SUFFICIENTE"
+        },
+        {
+          "field": "vittima",
+          "op": "eq",
+          "value": "COSCIENTE"
+        }
+      ],
+      "maneuvers": [
+        "SVINCOLO_SOSTA"
+      ],
+      "note": "Con vittima cosciente e kit-bull sufficiente lo svincolo resta applicabile."
+    },
+    {
+      "id": "EXCLUDE_DIR_CASCATA",
+      "name": "Escludi diretti in cascata",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "calata",
+          "op": "eq",
+          "value": "CASCATA"
+        }
+      ],
+      "maneuvers": [
+        "DIRETTO_SINGOLA",
+        "DIRETTO_DOPPIA"
+      ],
+      "note": "In cascata i soccorsi diretti sono esclusi."
+    },
+    {
+      "id": "EXCLUDE_DIR_MASSI",
+      "name": "Escludi diretti con caduta massi",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "caduta_massi",
+          "op": "eq",
+          "value": "SI"
+        }
+      ],
+      "maneuvers": [
+        "DIRETTO_SINGOLA",
+        "DIRETTO_DOPPIA"
+      ],
+      "note": "Con caduta massi i soccorsi diretti sono esclusi."
+    },
+    {
+      "id": "EXCLUDE_WRONG_ROPE_SINGLE",
+      "name": "Escludi manovre doppia su singola",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        }
+      ],
+      "maneuvers": [
+        "DIRETTO_DOPPIA",
+        "INDIRETTO_DOPPIA"
+      ],
+      "note": "Su corda singola non si applicano le manovre di corda doppia."
+    },
+    {
+      "id": "EXCLUDE_WRONG_ROPE_DOUBLE",
+      "name": "Escludi manovre singola su doppia",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_DOPPIA"
+        }
+      ],
+      "maneuvers": [
+        "DIRETTO_SINGOLA",
+        "INDIRETTO_SINGOLA",
+        "PASSAGGIO_NODO",
+        "SVINCOLO_SOSTA"
+      ],
+      "note": "Su corda doppia non si applicano le manovre tipiche di corda singola."
+    },
+    {
+      "id": "EXCLUDE_NON_MC",
+      "name": "Mini bilancino solo su mancorrente",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "neq",
+          "value": "MANCORRENTE"
+        }
+      ],
+      "maneuvers": [
+        "MINI_BILANCINO_MC"
+      ],
+      "note": "Il mini bilancino è riservato al mancorrente."
+    },
+    {
+      "id": "EXCLUDE_NON_SVINCOLABILE",
+      "name": "Svincolo solo su singola svincolabile",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "neq",
+          "value": "CORDA_SINGOLA_SVINCOLABILE"
+        }
+      ],
+      "maneuvers": [
+        "SVINCOLO_SOSTA"
+      ],
+      "note": "Lo svincolo richiede una sosta svincolabile."
+    },
+    {
+      "id": "EXCLUDE_SVINCOLO_NO_KIT",
+      "name": "Svincolo richiede kit sufficiente",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "kitbull",
+          "op": "neq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "SVINCOLO_SOSTA"
+      ],
+      "note": "Lo svincolo richiede kit-bull sufficiente."
+    },
+    {
+      "id": "ALLOW_IND_D_KIT",
+      "name": "Indiretto doppia con kit-bull sufficiente",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_DOPPIA"
+        },
+        {
+          "field": "kitbull",
+          "op": "eq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "INDIRETTO_DOPPIA"
+      ],
+      "note": "Su corda doppia l'indiretto è possibile anche con kit-bull sufficiente, anche senza corda annessa."
+    },
+    {
+      "id": "ALLOW_IND_S_ANNESSA",
+      "name": "Indiretto singola con corda annessa",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        },
+        {
+          "field": "corda_annessa",
+          "op": "eq",
+          "value": "SI"
+        }
+      ],
+      "maneuvers": [
+        "INDIRETTO_SINGOLA"
+      ],
+      "note": "L'indiretto su singola è consentito se è disponibile la corda annessa."
+    },
+    {
+      "id": "ALLOW_IND_S_KIT",
+      "name": "Indiretto singola con kit-bull sufficiente",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        },
+        {
+          "field": "kitbull",
+          "op": "eq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "INDIRETTO_SINGOLA"
+      ],
+      "note": "L'indiretto su singola è consentito se il kit-bull in sosta è sufficiente."
+    },
+    {
+      "id": "ALLOW_IND_D_ANNESSA",
+      "name": "Indiretto doppia con corda annessa",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_DOPPIA"
+        },
+        {
+          "field": "corda_annessa",
+          "op": "eq",
+          "value": "SI"
+        }
+      ],
+      "maneuvers": [
+        "INDIRETTO_DOPPIA"
+      ],
+      "note": "L'indiretto su doppia è consentito se è disponibile la corda annessa."
+    },
+    {
+      "id": "ALLOW_IND_D_KIT",
+      "name": "Indiretto doppia con kit-bull sufficiente",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_DOPPIA"
+        },
+        {
+          "field": "kitbull",
+          "op": "eq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "INDIRETTO_DOPPIA"
+      ],
+      "note": "L'indiretto su doppia è consentito se il kit-bull in sosta è sufficiente."
+    },
+    {
+      "id": "EXCLUDE_IND_S_NO_ROPE",
+      "name": "Escludi indiretto singola se manca corda utile",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        },
+        {
+          "field": "corda_annessa",
+          "op": "eq",
+          "value": "NO"
+        },
+        {
+          "field": "kitbull",
+          "op": "neq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "INDIRETTO_SINGOLA"
+      ],
+      "note": "L'indiretto su singola è escluso solo se non c'è né corda annessa né kit-bull sufficiente."
+    },
+    {
+      "id": "EXCLUDE_IND_D_NO_ROPE",
+      "name": "Escludi indiretto doppia se manca corda utile",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_DOPPIA"
+        },
+        {
+          "field": "corda_annessa",
+          "op": "eq",
+          "value": "NO"
+        },
+        {
+          "field": "kitbull",
+          "op": "neq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "INDIRETTO_DOPPIA"
+      ],
+      "note": "L'indiretto su doppia è escluso solo se non c'è né corda annessa né kit-bull sufficiente."
+    },
+    {
+      "id": "EXCLUDE_DIR_S_NO_ROPE",
+      "name": "Escludi diretto singola se manca corda utile",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        },
+        {
+          "field": "corda_annessa",
+          "op": "eq",
+          "value": "NO"
+        },
+        {
+          "field": "kitbull",
+          "op": "neq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "DIRETTO_SINGOLA"
+      ],
+      "note": "Il diretto su singola è escluso se non c'è né corda annessa né kit-bull sufficiente."
+    },
+    {
+      "id": "EXCLUDE_DIR_D_NO_ROPE",
+      "name": "Escludi diretto doppia se manca corda utile",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "eq",
+          "value": "CORDA_DOPPIA"
+        },
+        {
+          "field": "corda_annessa",
+          "op": "eq",
+          "value": "NO"
+        },
+        {
+          "field": "kitbull",
+          "op": "neq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "DIRETTO_DOPPIA"
+      ],
+      "note": "Il diretto su doppia è escluso se non c'è né corda annessa né kit-bull sufficiente."
+    },
+    {
+      "id": "ALLOW_NODO_ANNESSA",
+      "name": "Passaggio nodo con corda annessa",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        },
+        {
+          "field": "corda_annessa",
+          "op": "eq",
+          "value": "SI"
+        }
+      ],
+      "maneuvers": [
+        "PASSAGGIO_NODO"
+      ],
+      "note": "Il passaggio del nodo è consentito su corda singola se è disponibile la corda annessa."
+    },
+    {
+      "id": "ALLOW_NODO_KIT",
+      "name": "Passaggio nodo con kit-bull sufficiente",
+      "type": "allow",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        },
+        {
+          "field": "kitbull",
+          "op": "eq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "PASSAGGIO_NODO"
+      ],
+      "note": "Il passaggio del nodo è consentito su corda singola se il kit-bull in sosta è sufficiente."
+    },
+    {
+      "id": "EXCLUDE_NODO_NO_ROPE",
+      "name": "Escludi passaggio nodo se manca corda utile",
+      "type": "exclude",
+      "enabled": true,
+      "conditions": [
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        },
+        {
+          "field": "corda_annessa",
+          "op": "eq",
+          "value": "NO"
+        },
+        {
+          "field": "kitbull",
+          "op": "neq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "maneuvers": [
+        "PASSAGGIO_NODO"
+      ],
+      "note": "Il passaggio del nodo è escluso se non c'è né corda annessa né kit-bull sufficiente."
+    }
+  ],
+  "detailOverrides": {},
+  "scenarioOverrides": {},
+  "riskRules": [
+    {
+      "id": "RISK_HIGH",
+      "name": "Rischio alto",
+      "level": "ALTO",
+      "conditions": [
+        {
+          "field": "caduta_massi",
+          "op": "eq",
+          "value": "SI"
+        },
+        {
+          "field": "calata",
+          "op": "eq",
+          "value": "CASCATA"
+        },
+        {
+          "field": "base",
+          "op": "eq",
+          "value": "POZZA_TURBOLENTA"
+        }
+      ]
+    },
+    {
+      "id": "RISK_LOW",
+      "name": "Rischio basso",
+      "level": "BASSO",
+      "conditions": [
+        {
+          "field": "caduta_massi",
+          "op": "eq",
+          "value": "NO"
+        },
+        {
+          "field": "calata",
+          "op": "eq",
+          "value": "ASCIUTTA"
+        },
+        {
+          "field": "base",
+          "op": "eq",
+          "value": "ASCIUTTA"
+        },
+        {
+          "field": "vittima",
+          "op": "eq",
+          "value": "COSCIENTE"
+        }
+      ]
+    }
+  ],
+  "auditRules": [
+    {
+      "id": "AUDIT_NONE_WITH_ALLOWED",
+      "name": "Nessuna manovra scelta anche se esiste una manovra consentita",
+      "enabled": true,
+      "severity": "ALTA",
+      "conditions": [],
+      "checks": [
+        {
+          "kind": "best_answer_is",
+          "value": "NESSUNA_MANOVRA"
+        },
+        {
+          "kind": "allowed_any_except",
+          "value": "NESSUNA_MANOVRA"
+        }
+      ],
+      "problem": "È stata scelta 'Nessuna manovra' nonostante esistano manovre consentite.",
+      "suggestion": "Controllare priorità e fallback della scelta finale."
+    },
+    {
+      "id": "AUDIT_LOW_RISK_NODE_WITHOUT_SVINCOLO",
+      "name": "In rischio basso preferisci nodo se svincolo non è disponibile",
+      "enabled": true,
+      "severity": "MEDIA",
+      "conditions": [
+        {
+          "field": "risk_level",
+          "op": "eq",
+          "value": "BASSO"
+        },
+        {
+          "field": "situation",
+          "op": "in",
+          "value": [
+            "CORDA_SINGOLA_SVINCOLABILE",
+            "CORDA_SINGOLA_NON_SVINCOLABILE"
+          ]
+        }
+      ],
+      "checks": [
+        {
+          "kind": "allowed_contains",
+          "value": "PASSAGGIO_NODO"
+        },
+        {
+          "kind": "allowed_contains",
+          "value": "INDIRETTO_SINGOLA"
+        },
+        {
+          "kind": "allowed_not_contains",
+          "value": "SVINCOLO_SOSTA"
+        },
+        {
+          "kind": "best_answer_not",
+          "value": "PASSAGGIO_NODO"
+        }
+      ],
+      "problem": "In rischio basso il passaggio del nodo è consentito ma non è la scelta finale, pur non essendo disponibile lo svincolo sosta.",
+      "suggestion": "Valutare una priorità che preferisca il passaggio del nodo quando lo svincolo non è disponibile."
+    },
+    {
+      "id": "AUDIT_HIGH_RISK_DIRECT_OVER_INDIRECT",
+      "name": "In rischio alto non preferire un diretto se esiste un indiretto",
+      "enabled": true,
+      "severity": "ALTA",
+      "conditions": [
+        {
+          "field": "risk_level",
+          "op": "eq",
+          "value": "ALTO"
+        }
+      ],
+      "checks": [
+        {
+          "kind": "best_answer_in",
+          "value": [
+            "DIRETTO_SINGOLA",
+            "DIRETTO_DOPPIA"
+          ]
+        },
+        {
+          "kind": "allowed_any_of",
+          "value": [
+            "INDIRETTO_SINGOLA",
+            "INDIRETTO_DOPPIA"
+          ]
+        }
+      ],
+      "problem": "In rischio alto è stato preferito un diretto pur essendo disponibile un indiretto.",
+      "suggestion": "Valutare una priorità che privilegi l’indiretto in rischio alto."
+    },
+    {
+      "id": "AUDIT_ROPE_REQUIRED_BUT_MISSING",
+      "name": "Scelta finale richiede corda utile ma non è disponibile",
+      "enabled": true,
+      "severity": "ALTA",
+      "conditions": [
+        {
+          "field": "corda_annessa",
+          "op": "eq",
+          "value": "NO"
+        },
+        {
+          "field": "kitbull",
+          "op": "neq",
+          "value": "SUFFICIENTE"
+        }
+      ],
+      "checks": [
+        {
+          "kind": "best_answer_in",
+          "value": [
+            "DIRETTO_SINGOLA",
+            "DIRETTO_DOPPIA",
+            "INDIRETTO_SINGOLA",
+            "INDIRETTO_DOPPIA",
+            "PASSAGGIO_NODO"
+          ]
+        }
+      ],
+      "problem": "La scelta finale richiede corda utile ma non c’è né corda annessa né kit-bull sufficiente.",
+      "suggestion": "Controllare regole allow/exclude per disponibilità corda."
+    }
+  ],
+  "authMode": "LOCAL",
+  "users": [
+    {
+      "id": "u_admin",
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin",
+      "enabled": true
+    },
+    {
+      "id": "u_user",
+      "username": "utente",
+      "password": "utente123",
+      "role": "user",
+      "enabled": true
+    }
+  ],
+  "quizDisplay": {
+    "showScenarioId": true,
+    "showSituation": true,
+    "visibleFields": [
+      "calata",
+      "corda_annessa",
+      "kitbull",
+      "base",
+      "sfregamenti",
+      "vittima",
+      "compagni_base",
+      "caduta_massi"
+    ]
+  }
+};
